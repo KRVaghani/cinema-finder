@@ -7,21 +7,35 @@ import { mapTypes, useMapType } from './Map';
 const MapTypeMenu = () => {
   const [open, setOpen] = useState(false);
   const settingsButtonRef = useRef(null);
-
   const [mapType, setMapType] = useMapType();
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleMapTypeChange = (evt) => {
+    setMapType(evt.target.value);
+    handleClose();
+  };
+
   return (<>
-    <IconButton ref={settingsButtonRef} sx={{ ml: 'auto' }} color={open ? 'grey' : 'initial'} onClick={() => setOpen(true)}>
+    <IconButton 
+      ref={settingsButtonRef} 
+      sx={{ ml: 'auto' }} 
+      color={open ? 'grey' : 'initial'} 
+      onClick={() => setOpen(true)}
+    >
       <MdSettings />
     </IconButton>
     <Backdrop
       open={open}
+      onClick={handleClose}
       sx={{ zIndex: 1000 }}
     />
     <Popover
       open={open}
       anchorEl={settingsButtonRef?.current}
-      onClose={() => setOpen(false)}
+      onClose={handleClose}
       anchorOrigin={{
         vertical: 'bottom',
         horizontal: 'left',
@@ -29,15 +43,22 @@ const MapTypeMenu = () => {
     >
       <FormControl sx={{ m: 2 }}>
         <FormLabel>Active map library</FormLabel>
-        <RadioGroup value={mapType} onChange={(evt) => {
-          setMapType(evt.target.value);
-        }}>
+        <RadioGroup 
+          value={mapType} 
+          onChange={handleMapTypeChange}
+        >
           {mapTypes.map((type) => (
-            <FormControlLabel key={type} value={type} control={<Radio />} label={startCase(type)} />
+            <FormControlLabel 
+              key={type} 
+              value={type} 
+              control={<Radio />} 
+              label={startCase(type)} 
+            />
           ))}
         </RadioGroup>
       </FormControl>
     </Popover>
-  </>)
-}
+  </>);
+};
+
 export default MapTypeMenu;

@@ -1,6 +1,6 @@
 // Country bounds drawn via http://bboxfinder.com/
 // they are currently in the follow format [W, S, E, N]
-const countryBounds = {
+export const countryBounds = {
   au: [112.669086, -43.696673, 153.726368, -10.737187],
   nz: [166.332922, -47.292562, 178.573837, -34.394162],
 }

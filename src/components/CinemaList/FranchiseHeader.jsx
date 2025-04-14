@@ -1,4 +1,4 @@
-import { IconButton, ListSubheader, Typography, Stack } from "@mui/material";
+import { IconButton, Typography, Stack } from "@mui/material";
 import { GiAustralia, GiFern } from "react-icons/gi";
 import { MdOutlineArrowBack } from 'react-icons/md';
 import { Link as RouterLink } from 'react-router-dom';
@@ -10,24 +10,25 @@ const FranchiseHeader = () => {
   const franchise = franchises[franchiseId];
 
   return (
-    <ListSubheader sx={{ pb: 2 }}>
-      <Stack direction="row" justifyContent="space-between">
-        <IconButton component={RouterLink} to="/">
-          <MdOutlineArrowBack />
-        </IconButton>
-        {franchise?.logoUrl ? (<div style={{ height: '3em' }}>
+    <Stack direction="row" justifyContent="space-between" sx={{ p: 2 }}>
+      <IconButton component={RouterLink} to="/">
+        <MdOutlineArrowBack />
+      </IconButton>
+      {franchise?.logoUrl ? (
+        <div style={{ height: '3em' }}>
           <img src={franchise?.logoUrl} alt={`${franchise.identifier} logo`} height="100%" />
-        </div>) : (
-          <Typography sx={{ alignSelf: 'center' }}>
-            {franchiseId === 'all-cinemas' ? 'All Cinemas' : (franchise?.name || franchise?.identifier || franchise?.id)}
-          </Typography>
-        )}
-        <IconButton disabled>
-          {countryCode === 'au' && <GiAustralia />}
-          {countryCode === 'nz' && <GiFern />}
-        </IconButton>
-      </Stack>
-    </ListSubheader>
+        </div>
+      ) : (
+        <Typography sx={{ alignSelf: 'center' }}>
+          {franchiseId === 'all-cinemas' ? 'All Cinemas' : (franchise?.name || franchise?.identifier || franchise?.id)}
+        </Typography>
+      )}
+      <IconButton disabled>
+        {countryCode === 'au' && <GiAustralia />}
+        {countryCode === 'nz' && <GiFern />}
+      </IconButton>
+    </Stack>
   )
 }
+
 export default FranchiseHeader;
