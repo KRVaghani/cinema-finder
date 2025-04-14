@@ -1,0 +1,39 @@
+# Dependencies
+node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Production
+/build
+
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env
+
+# Debug logs
+npm-debug.log*
+
+# IDE specific files
+.idea
+.vscode
+*.swp
+*.swo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Yarn (since we're using npm)
+yarn.lock
+.yarn
+.yarnrc
+.yarn-integrity
